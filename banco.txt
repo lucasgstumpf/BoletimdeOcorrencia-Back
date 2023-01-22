@@ -62,5 +62,62 @@ create table acidente (
 	usuario(cpf)
 );
 
+===
+procedures
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insereFurto`(u_catacteristica_agressor VARCHAR(60), u_endereco VARCHAR(60), u_pertences_perdidos varchar(50),  u_resumo VARCHAR(50), u_cpf VARCHAR(50),
+createAt date, updatedAt date)
+BEGIN
+IF ((u_catacteristica_agressor != "") AND (u_endereco != "") AND (u_pertences_perdidos != "") AND (u_resumo!= "")) THEN
+
+	INSERT INTO furto_roubo (catacteristica_agressor, endereco, pertences_perdidos, resumo, cpf, createdAt, updateAt) VALUES (
+	u_catacteristica_agressor, u_endereco, u_pertences_perdidos, u_resumo, u_cpf, createAt, updatedAt);
+
+END IF;
+END
+
+-----
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insereAcidente`(u_endereco VARCHAR (50),
+u_resumo VARCHAR(60), u_marca_veiculo VARCHAR(60),  u_modelo_veiculo VARCHAR(50), u_placa_veiculo VARCHAR(50),
+u_cor_veiculo VARCHAR(50), u_cpf VARCHAR(11), createAt date, updatedAt date)
+BEGIN
+IF ((u_endereco != "") AND (u_resumo != "") AND (u_marca_veiculo != "") AND (u_modelo_veiculo!= "")) THEN
+
+	INSERT INTO acidentes (endereco, resumo, marca_veiculo, modelo_veiculo, placa_veiculo, cor_veiculo, cpf,createdAt, updateAt) VALUES (
+	u_endereco, u_resumo, u_marca_veiculo, u_modelo_veiculo, u_placa_veiculo,  u_cor_veiculo, u_cpfcreateAt, updatedAt);
+
+END IF;
+END
+
+---
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insereUsuario`(u_nome VARCHAR(60), u_senha VARCHAR(60), u_cpf int,  u_telefone VARCHAR(11), 
+u_dataNascimento date, createAt date, updatedAt date)
+BEGIN
+IF ((u_nome != "") AND (u_dataNascimento != "") AND (u_telefone != "") AND (u_cpf!= 0)) THEN
+
+	INSERT INTO usuario (nome, senha, cpf, telefone, dataNascimento, createdAt, updateAt) VALUES (
+	u_nome, u_senha, u_cpf, u_telefone, u_dataNascimento, createAt, updatedAt);
+
+END IF;
+END
+
+----
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insereVioencia`(u_nome_agressor VARCHAR (50),
+u_catacteristica_agressor VARCHAR(60), u_endereco VARCHAR(60),  u_resumo VARCHAR(50), u_cpf VARCHAR(50),
+createAt date, updatedAt date)
+BEGIN
+IF ((u_nome_agressor != "") AND (u_catacteristica_agressor != "") AND (u_endereco != "") AND (u_resumo!= "")) THEN
+
+	INSERT INTO violenciadomesticas (u_nome_agressor, u_catacteristica_agressor, u_endereco, resumo, cpf,createdAt, updateAt) VALUES (
+	u_nome_agressor, u_catacteristica_agressor, u_endereco, u_resumo, u_cpf,  createAt, updatedAt);
+
+END IF;
+END
+
+
 
 
