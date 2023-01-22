@@ -90,6 +90,21 @@ app.post("/registrosViolencia", async (req, res) => {
 
 });
 
+app.post("/registrosViolencia", async (req, res) => {
+  console.log(req.body['cpf']);
+
+  const sql = `SELECT resumo, createdAt  FROM violenciadomesticas WHERE cpf = ${req.body[`cpf`]}`
+  
+  const resposta = await db.query(sql, {
+    type: sequelize.QueryTypes.SELECT })
+
+  const teste = JSON.stringify(resposta);
+  console.log(resposta)
+  return res.json(resposta);
+  
+
+});
+
 app.post("/registrosFurto", async (req, res) => {
   console.log(req.body['cpf']);
   const sql = `SELECT resumo, createdAt FROM furto_roubos WHERE cpf = ${req.body[`cpf`]}`
@@ -151,6 +166,24 @@ app.post("/registrosDelegadoFurto", async (req, res) => {
   return res.json(resposta);
   
 });
+
+app.post("/autenticacao", async (req, res) => {
+  
+  const sql = `SELECT cpf FROM users WHERE cpf = ${req.body[`cpf`]} and senha = ${req.body[`senha`]}`
+
+  const resposta = await db.query(sql, {
+  type: sequelize.QueryTypes.SELECT })
+
+  if(resposta.length > 0){
+    console.log("Usuario encontrado!")
+    return res.json(resposta)
+  }else{
+    console.log("Usuario não encontrado!")
+    return res.json(resposta);
+  }
+
+});
+
 
 app.listen(5000, () => {
   console.log("Servidor rodando na porta 5000");
