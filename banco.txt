@@ -1,0 +1,66 @@
+
+create schema `bd2`;
+
+create database `trabalhobd`;
+use `trabalhobd`;
+create table usuario (
+	cpf int primary key,
+	dataNasicmento date not null,
+	nome varchar(45) not null,
+	telefone varchar(11) not null,
+	senha varchar(50) not null
+);
+
+create table delegado (
+	funcional varchar(45) not null,
+	nome varchar(45) not null,
+	cpf int primary key,
+    senha varchar(50) not null
+);
+
+create table boletim(
+	numeroRegistro int primary key,
+	delegadoFuncional int,
+	usuarioCPF int not null,
+	dataCriacao date not null,
+	foreign key (usuarioCPF) references usuario(cpf),
+	foreign key (delegadoFuncional) references delegado(funcional)
+);
+
+create table violenciaDomestica (
+	id int primary key,
+	endereco varchar(45) not null,
+	nomeAgressor varchar(45) not null,
+	caracteristicaAgressor varchar (150) not null,
+    resumo varchar(50) not null,
+    usuarioCPF int not null,
+	foreign key (usuarioCPF) references
+	usuario(cpf)
+);
+
+create table furtoRoubo(
+	id int primary key,
+	pertences varchar(45) not null,
+	endereco varchar(45) not null,
+	caracteristicaInfrator varchar (150) not null,
+    resumo varchar(50) not null,
+	usuarioCPF int not null,
+	foreign key (usuarioCPF) references
+	usuario(cpf)
+);
+
+create table acidente (
+	id int primary key,
+	endereco varchar(45) not null,
+	marca varchar(45) not null,
+    modelo varchar(45) not null,
+    placa varchar(45) not null,
+    cor varchar(45) not null,
+	resumo varchar(50) not null,
+	usuarioCPF int not null,
+	foreign key (usuarioCPF) references
+	usuario(cpf)
+);
+
+
+
