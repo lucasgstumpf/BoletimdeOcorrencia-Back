@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("./db");
 
-const Acidente = db.define('acidente', {
+const Acidente = db.define('acidentes', {
     id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -31,10 +31,14 @@ const Acidente = db.define('acidente', {
     cor_veiculo:{
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    cpf:{
+        type: Sequelize.STRING,
+        allowNull: false,
     }
 
 })
 
-// Acidente.sync()
+Acidente.sync()
 
 module.exports = Acidente;

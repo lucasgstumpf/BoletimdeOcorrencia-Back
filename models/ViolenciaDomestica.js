@@ -24,9 +24,12 @@ const Vd = db.define('violenciaDomestica', {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    cpf:{
+        type: Sequelize.STRING,
+        allowNull: false,
+    }
 
 })
-
-// Vd.sync()
+Vd.sync()
 
 module.exports = Vd;

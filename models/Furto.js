@@ -24,9 +24,13 @@ const Furto = db.define('furto_roubos', {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    cpf:{
+        type: Sequelize.STRING,
+        allowNull: false,
+    }
 
 })
 
-// Furto.sync();
+Furto.sync();
 
 module.exports = Furto;
